@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block gorivo %}
+<table border=1>
+<tr><td>Cijena</td><td>Tvrtke</td></tr>
+{% for cijena in cijene_sa_vlasnicima %}
+<tr>
+<td>{{cijena.0}}</td>
+<td>{% for vlasnik in cijena.1 %}
+{{vlasnik.0}} ({{vlasnik.1}} postaja)<br />
+{% endfor %}
+</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

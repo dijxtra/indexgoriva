@@ -1,0 +1,4 @@
+<p align="center">| {% for gorivo in vrste_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'gorivo_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
+{% block gorivo %}
+<p>Izaberite gorivo.</p>
+{% endblock %}
