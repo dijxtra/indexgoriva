@@ -3,8 +3,9 @@
 <p align="center">| {% for gorivo in vrste_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'gorivo_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
 {% endblock %}
 {% block gorivo %}
-<table border=1>
-<tr><td>Cijena</td><td>Tvrtke</td></tr>
+<table class="table">
+<thead><tr><th>Cijena</th><th>Tvrtke</th></tr></thead>
+<tbody>
 {% for cijena in cijene_sa_vlasnicima %}
 <tr>
 <td>{{cijena.0}}</td>
@@ -14,5 +15,6 @@
 </td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
 {% endblock %}

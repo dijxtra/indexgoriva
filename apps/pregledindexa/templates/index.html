@@ -17,7 +17,7 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Hello, world!</h1>
+<div class="container">
 {% block gorivo_meni %}
 <p align="center">| {% for gorivo in vrste_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
 {% endblock %}
@@ -26,7 +26,7 @@
 {% block gorivo %}
 <p>Izaberite gorivo.</p>
 {% endblock %}
-
+</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
