@@ -13,8 +13,10 @@ indexgoriva je u pre-alpha fazi
 ### Roadmap
 
 1. implementacija jednostavnog bootstrap dizajna
-2. praćenje razvoja [mingoparsera](https://github.com/dijxtra/mingoparser) i prikaz podataka kako budu dostupni
-3. pronalaženje front-end developera da dizajnira sajt :-)
+1. praćenje razvoja [mingoparsera](https://github.com/dijxtra/mingoparser) i prikaz podataka kako budu dostupni
+1. zapisivanje svih vrijednosti jednom dnevno i grafičko prikazivanje promjene svakog indeksa kroz vrijeme
+1. normaliziranje vremenske promjene indeksa i grafička usporedba trendova indeksa i cijene barela nafte na svjetskom tržištu
+1. pronalaženje front-end developera da predizajnira sajt :-)
 
 ### Licenca
 
