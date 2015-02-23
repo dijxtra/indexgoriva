@@ -1,0 +1,13 @@
+{% extends "index_sa_menijem.html" %}
+{% block gorivo %}
+<table border=1>
+<tr><td>Tvrtka</td><td>Cjenovni indeks</td><td>Pojedine cijene</td></tr>
+{% for vlasnik in vlasnici_sa_cijenama %}
+<tr>
+<td>{{vlasnik.ime}}</td>
+<td>{{vlasnik.index|floatformat:2}}</td>
+<td>{{vlasnik.cijene}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
