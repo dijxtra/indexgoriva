@@ -19,7 +19,6 @@ def load_vrste():
         url = 'http://min-go.hr/api/web_api/web/vrste-goriva'
         return json.loads(urllib2.urlopen(url).read())
     else:
-        path()
         file_name = path() + 'inputs/vrste-goriva'
         with open(file_name) as f:
             return json.loads(f.read())
@@ -93,6 +92,30 @@ class Postaja:
     def set_ime_vlasnika(self, ime_vlasnika_in):
         self._ime_vlasnika = ime_vlasnika_in
 
+class Vlasnik:
+    def __init__(self, ime):
+        self._ime = ime
+        self._lista_cijena = []
+        
+    def ime(self):
+        return self._ime
+        
+    def cijene(self):
+        return self._lista_cijena
+
+    def dodaj_cijenu(self, cijena, broj_postaja):
+        self._lista_cijena.append((cijena, broj_postaja))
+
+    def index(self):
+        i = 0
+        br = 0
+        
+        for (cijena, broj_postaja) in self._lista_cijena:
+            i += cijena * broj_postaja
+            br += broj_postaja
+            
+        return i / br
+
 def gen_vlasnike_postaja(tree):
     """Generira dictionary koji mapira postaju sa njenim vlasnikom"""
     vlasnici_postaja = {}
@@ -151,6 +174,9 @@ def vrste_goriva():
     return vrste_goriva
 
 def main(vrsta_goriva = 2, limit = 0):
+    return gen_cijene_sa_vlasnicima(vrsta_goriva, limit)
+    
+def gen_cijene_sa_vlasnicima(vrsta_goriva = 2, limit = 0):
     vrsta_goriva = str(vrsta_goriva)
 
     obveznik_json = load_obveznik()
@@ -182,8 +208,27 @@ def main(vrsta_goriva = 2, limit = 0):
 
     return cijene_sa_vlasnicima
 
+def gen_vlasnici_sa_cijenama(cijene_sa_vlasnicima):
+    vlasnici_sa_cijenama = {}
+    
+    for cijena, vlasnici in cijene_sa_vlasnicima:
+        for vlasnik in vlasnici:
+            if not vlasnik[0] in vlasnici_sa_cijenama:
+                vlasnici_sa_cijenama[vlasnik[0]] = Vlasnik(vlasnik[0])
+            vlasnici_sa_cijenama[vlasnik[0]].dodaj_cijenu(cijena, vlasnik[1])
+
+    vlasnici_sa_cijenama = sorted(vlasnici_sa_cijenama.values(), key=lambda x: x.ime())
+    return vlasnici_sa_cijenama
+            
+
 if __name__ == "__main__":
-    cijene_sa_vlasnicima = main(limit = 4)
+    cijene_sa_vlasnicima = gen_cijene_sa_vlasnicima(limit = 4)
+    vlasnici_sa_cijenama = gen_vlasnici_sa_cijenama(cijene_sa_vlasnicima)
 
     for c in cijene_sa_vlasnicima:
         print c
+
+    print "--------------"
+    
+    for vlasnik in vlasnici_sa_cijenama:
+        print vlasnik.ime(), vlasnik.cijene(), format("%.2f" % vlasnik.index())
