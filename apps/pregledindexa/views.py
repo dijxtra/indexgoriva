@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import mingoparser_00 as mgp
+import mingoparser_01 as mgp
 
 
 def index(request):
