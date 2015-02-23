@@ -1,4 +1,4 @@
 {% extends "index.html" %}
 {% block meni %}
-<p align="center">| HOME | <a href="{% url 'indeksi_view' gorivo_id %}">INDEKSI</a> | <a href="{% url 'gorivo_view' gorivo_id %}">CIJENE</a> | </p>
+<p align="center">| <a href="{% url 'indeksi_view' gorivo_id %}">INDEKSI</a> | <a href="{% url 'gorivo_view' gorivo_id %}">CIJENE</a> | </p>
 {% endblock %}
