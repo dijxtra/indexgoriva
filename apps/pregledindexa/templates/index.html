@@ -19,6 +19,7 @@
   <body>
 <div class="container">
 {% block gorivo_meni %}
+<p align="center">| {% for gorivo in popularna_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
 <p align="center">| {% for gorivo in vrste_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
 {% endblock %}
 {% block meni %}
