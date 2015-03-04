@@ -4,13 +4,14 @@
 {% endblock %}
 {% block gorivo %}
 <table class="table">
-<thead><tr><th>Tvrtka</th><th>Cjenovni indeks</th><th>Pojedine cijene</th></tr></thead>
+<thead><tr><th>Tvrtka</th><th>Cjenovni indeks</th><th>Cijena</th><th>Broj postaja</th></tr></thead>
 <tbody>
-{% for vlasnik in vlasnici_sa_cijenama %}
+{% for redak in indeksi %}
 <tr>
-<td>{{vlasnik.ime}}</td>
-<td>{{vlasnik.index|floatformat:2}}</td>
-<td>{{vlasnik.cijene}}</td>
+<td><a href="{{redak.0}}">{{redak.1}}</a></td>
+<td>{{redak.2|floatformat:3}}</td>
+<td>{% for c in redak.3 %}{{c.0}}<br />{% endfor %}</td>
+<td>{% for c in redak.3 %}{{c.1}}<br />{% endfor %}</td>
 </tr>
 {% endfor %}
 </tbody>

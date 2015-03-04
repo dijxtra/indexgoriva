@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Indeks goriva</title>
 
     <!-- Bootstrap -->
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,8 +19,17 @@
   <body>
 <div class="container">
 {% block gorivo_meni %}
-<p align="center">| {% for gorivo in popularna_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
-<p align="center">| {% for gorivo in vrste_goriva %}{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %} | {% endfor %}</p>
+<p align="center">
+<div class="btn-group">
+{% for gorivo in popularna_goriva %}<a href="{% url 'indeksi_view' gorivo.0 %}"><button class="btn{% ifequal gorivo.0 gorivo_id %}-info{% else %}-warning{% endifequal %}">{{gorivo.1}}</button></a>{% endfor %}</p>
+</div></p>
+<p align="center">
+<div class="dropdown theme-dropdown clearfix">
+<ul class="dropdown-menu" role="menu">
+{% for gorivo in vrste_goriva %}<li role="presentation">{% ifequal gorivo.0 gorivo_id %}<b>{% endifequal %}<a role="menuitem" href="{% url 'indeksi_view' gorivo.0 %}">{{gorivo.1}}</a>{% ifequal gorivo.0 gorivo_id %}</b>{% endifequal %}</li>{% endfor %}
+</ul>
+</div>
+</p>
 {% endblock %}
 {% block meni %}
 {% endblock %}
