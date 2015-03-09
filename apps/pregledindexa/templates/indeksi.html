@@ -1,6 +1,26 @@
 {% extends "base.html" %}
 {% block meni %}
-<p align="center">| <a href="{% url 'indeksi_view' gorivo_id %}" style="font-weight: bold">INDEKSI</a> | <a href="{% url 'gorivo_view' gorivo_id %}">CIJENE</a> | </p>
+<p align="center">
+<nav class="navbar navbar-default">
+<div class="container-fluid">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#stranice">
+<span class="sr-only">Otvori izbornik</span>
+</button>
+</div>
+<div class="collapse navbar-collapse" id="stranice">
+<ul class="nav navbar-nav">
+<li class="active">
+  <a href="{% url 'indeksi_view' gorivo_id %}">Indeksi</a>
+</li>
+<li>
+  <a href="{% url 'gorivo_view' gorivo_id %}">Cijene</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</p>
 {% endblock %}
 {% block gorivo %}
 <table class="table">
@@ -8,7 +28,7 @@
 <tbody>
 {% for redak in indeksi %}
 <tr>
-<td><a href="{{redak.0}}">{{redak.1}}</a></td>
+<td>{{redak.1}}</td>
 <td>{{redak.2|floatformat:3}}</td>
 <td>{% for c in redak.3 %}{{c.0}}<br />{% endfor %}</td>
 <td>{% for c in redak.3 %}{{c.1}}<br />{% endfor %}</td>
