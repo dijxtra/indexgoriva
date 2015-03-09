@@ -67,8 +67,15 @@
 </p>
 {% endif %}
 {% endblock %}
+{% block filter %}
+<p style="text-align: right">Prikazane tvrtke koje imaju <input type="number" value="1" min="1" max="999" readonly /> ili više postaja.</p>
+{% endblock %}
 {% block gorivo %}
 <p>Izaberite gorivo.</p>
+{% endblock %}
+{% block stanje %}
+<p>Cijene na datum: XXX.<br />
+Cijene se nisu mijenjale od: XXX.</p>
 {% endblock %}
 {% block footer %}
 <p align="center">
