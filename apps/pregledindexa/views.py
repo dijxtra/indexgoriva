@@ -2,7 +2,7 @@ from django.shortcuts import render
 import mingoparser_03 as mgp
 
 def gen_popularna_goriva(vrste_goriva, gorivo_id = None):
-    lista_popularnih = [2, 3, 8]
+    lista_popularnih = [1, 7, 9]
     popularna_goriva = []
 
     if gorivo_id:
@@ -18,9 +18,10 @@ def gen_popularna_goriva(vrste_goriva, gorivo_id = None):
     
 
 def index(request):
-    vrste_goriva = mgp.vrste_goriva()
-    popularna_goriva = gen_popularna_goriva(vrste_goriva)
-    return render(request, 'base.html', {"view_name": "indeksi_view", "vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva})
+    return indeksi(request, 1)
+
+def impressum(request):
+    return render(request, 'impressum.html', {"view_name": "impressum_view", "gorivo_id": 1})
 
 def gorivo(request, gorivo_id):
     vrste_goriva = mgp.vrste_goriva()
