@@ -20,7 +20,7 @@ def gen_popularna_goriva(vrste_goriva, gorivo_id = None):
 def index(request):
     vrste_goriva = mgp.vrste_goriva()
     popularna_goriva = gen_popularna_goriva(vrste_goriva)
-    return render(request, 'base.html', {"vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva})
+    return render(request, 'base.html', {"view_name": "indeksi_view", "vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva})
 
 def gorivo(request, gorivo_id):
     vrste_goriva = mgp.vrste_goriva()
@@ -46,7 +46,7 @@ def gorivo(request, gorivo_id):
             lista_vlasnik_postaja.append((vlasnik.ime(), vlasnik.broj_postaja(int(gorivo_id), cijena = cijena)))
         cijene_sa_vlasnicima_za_view.append([cijena, lista_vlasnik_postaja])
     
-    return render(request, 'gorivo.html', {"vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva, "cijene_sa_vlasnicima": cijene_sa_vlasnicima_za_view, "gorivo_id": int(gorivo_id)})
+    return render(request, 'gorivo.html', {"view_name": "gorivo_view", "vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva, "cijene_sa_vlasnicima": cijene_sa_vlasnicima_za_view, "gorivo_id": int(gorivo_id)})
                             
 def indeksi(request, gorivo_id):
     vrste_goriva = mgp.vrste_goriva()
@@ -76,7 +76,7 @@ def indeksi(request, gorivo_id):
             
     indeksi = sorted(indeksi, key=lambda i: i[2])
 
-    return render(request, 'indeksi.html', {"vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva, "indeksi": indeksi, "gorivo_id": int(gorivo_id)})
+    return render(request, 'indeksi.html', {"view_name": "indeksi_view", "vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva, "indeksi": indeksi, "gorivo_id": int(gorivo_id)})
 
 
                             

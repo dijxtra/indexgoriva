@@ -1,27 +1,4 @@
 {% extends "base.html" %}
-{% block meni %}
-<p align="center">
-<nav class="navbar navbar-default">
-<div class="container-fluid">
-<div class="navbar-header">
-<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#stranice">
-<span class="sr-only">Otvori izbornik</span>
-</button>
-</div>
-<div class="collapse navbar-collapse" id="stranice">
-<ul class="nav navbar-nav">
-<li class="active">
-  <a href="{% url 'indeksi_view' gorivo_id %}">Indeksi</a>
-</li>
-<li>
-  <a href="{% url 'gorivo_view' gorivo_id %}">Cijene</a>
-</li>
-</ul>
-</div>
-</div>
-</nav>
-</p>
-{% endblock %}
 {% block gorivo %}
 <table class="table">
 <thead><tr><th>Tvrtka</th><th>Cjenovni indeks</th><th>Cijena</th><th>Broj postaja</th></tr></thead>
