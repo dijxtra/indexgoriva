@@ -37,14 +37,16 @@ def gorivo(request, gorivo_id):
     vlasnici = saver.citaj_cijene_s_postajama(vlasnici, 'cijene_s_postajama.json')
 
     cijene_sa_vlasnicima = mgp.gen_cijene_sa_vlasnicima(vlasnici)
-    cijene_sa_vlasnicima = sorted(cijene_sa_vlasnicima[int(gorivo_id)].iteritems(), key = lambda c: c[0])
-
     cijene_sa_vlasnicima_za_view = []
-    for cijena, vlasnici in cijene_sa_vlasnicima:
-        lista_vlasnik_postaja = []
-        for vlasnik in vlasnici:
-            lista_vlasnik_postaja.append((vlasnik.ime(), vlasnik.broj_postaja(int(gorivo_id), cijena = cijena)))
-        cijene_sa_vlasnicima_za_view.append([cijena, lista_vlasnik_postaja])
+
+    if int(gorivo_id) in cijene_sa_vlasnicima:        
+        cijene_sa_vlasnicima = sorted(cijene_sa_vlasnicima[int(gorivo_id)].iteritems(), key = lambda c: c[0])
+
+        for cijena, vlasnici in cijene_sa_vlasnicima:
+            lista_vlasnik_postaja = []
+            for vlasnik in vlasnici:
+                lista_vlasnik_postaja.append((vlasnik.ime(), vlasnik.broj_postaja(int(gorivo_id), cijena = cijena)))
+            cijene_sa_vlasnicima_za_view.append([cijena, lista_vlasnik_postaja])
     
     return render(request, 'gorivo.html', {"view_name": "gorivo_view", "vrste_goriva": vrste_goriva, "popularna_goriva": popularna_goriva, "cijene_sa_vlasnicima": cijene_sa_vlasnicima_za_view, "gorivo_id": int(gorivo_id)})
                             
